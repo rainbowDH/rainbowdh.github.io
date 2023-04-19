@@ -1,4 +1,10 @@
+@font-face{
+  font-family:'bitbit';
+  src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+
 h1 {
 	text-align: center;
 	font-weight: bold;
+	font-family: 'bitbit', sans-serif;
 }
