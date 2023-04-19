@@ -9,10 +9,52 @@
 			text-align: center;
 			font-weight: bold;
 		}
+		canvas {
+        		border: 1px solid #ccc;
+     		}
 	</style>
+
 	<title>시험성적분석</title>
 </head>
 <body>
+	<canvas id="myCanvas" width="400" height="300"></canvas>
+    	<script>
+     	 // 캔버스 가져오기
+      	var canvas = document.getElementById("myCanvas");
+      	var ctx = canvas.getContext("2d");
+	
+	      // 데이터 생성
+      	var data = [];
+      	for (var i = 0; i < 5; i++) {
+        	data.push(Math.floor(Math.random() * 100) + 1);
+      	}
+
+      	// 애니메이션 설정
+      	var barHeight = 30;
+      	var xPos = 50;
+      	var yPos = 50;
+      	var animationSpeed = 10;
+
+     	function animate() {
+        	ctx.clearRect(0, 0, canvas.width, canvas.height);
+        	for (var i = 0; i < data.length; i++) {
+          	ctx.beginPath();
+          	ctx.fillStyle = "blue";
+          	ctx.fillRect(xPos, yPos, data[i], barHeight);
+          	ctx.closePath();
+          	yPos += barHeight + 10;
+       		}
+
+        	// 막대가 채워지는 애니메이션
+        	if (xPos < 350) {
+          	xPos += animationSpeed;
+          	requestAnimationFrame(animate);
+        	}
+      	}
+
+      	// 애니메이션 시작
+      	animate();
+    	</script>
 	<h1>시험성적분석</h1>
 </body>
 </html>
