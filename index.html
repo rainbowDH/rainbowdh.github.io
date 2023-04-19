@@ -18,47 +18,9 @@
 </head>
 <body>
 	<h1>시험 성적 분석</h1>
-	<canvas id="myCanvas" width="400" height="300"></canvas>
-    <script>
-      // 캔버스 가져오기
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
-
-      // 정규 분포 그래프 그리기 함수
-      function drawNormalDistribution(mu, sigma) {
-        // x값 범위 정의
-        var xMin = -3 * sigma + mu;
-        var xMax = 3 * sigma + mu;
-
-        // y값 범위 정의
-        var yMin = 0;
-        var yMax = 1 / (sigma * Math.sqrt(2 * Math.PI));
-
-        // 그래프 그리기
-        var xRange = xMax - xMin;
-        var xStep = xRange / canvas.width;
-        var yStep = canvas.height / (yMax - yMin);
-
-        ctx.beginPath();
-        ctx.strokeStyle = "blue";
-        ctx.moveTo(0, canvas.height);
-
-        for (var x = 0; x < canvas.width; x++) {
-          var xValue = xMin + x * xStep;
-          var yValue =
-            (1 / (sigma * Math.sqrt(2 * Math.PI))) *
-            Math.exp(-Math.pow(xValue - mu, 2) / (2 * Math.pow(sigma, 2)));
-          var y = canvas.height - (yValue - yMin) * yStep;
-          ctx.lineTo(x, y);
-        }
-
-        ctx.stroke();
-        ctx.closePath();
-      }
-
-      // 정규 분포 그래프 그리기
-      drawNormalDistribution(0, 1);
-
-
+	<form action="/upload-csv" method="POST" enctype="multipart/form-data">
+  	<input type="file" name="csvFile" accept=".csv">
+  	<button type="submit">Upload</button>
+	</form>
 </body>
 </html>
