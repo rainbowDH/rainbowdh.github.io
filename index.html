@@ -17,44 +17,48 @@
 	<title>시험성적분석</title>
 </head>
 <body>
+	<h1>시험 성적 분석</h1>
 	<canvas id="myCanvas" width="400" height="300"></canvas>
-    	<script>
-     	 // 캔버스 가져오기
-      	var canvas = document.getElementById("myCanvas");
-      	var ctx = canvas.getContext("2d");
-	
-	      // 데이터 생성
-      	var data = [];
-      	for (var i = 0; i < 5; i++) {
-        	data.push(Math.floor(Math.random() * 100) + 1);
-      	}
+    <script>
+      // 캔버스 가져오기
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
 
-      	// 애니메이션 설정
-      	var barHeight = 30;
-      	var xPos = 50;
-      	var yPos = 50;
-      	var animationSpeed = 10;
+      // 정규 분포 그래프 그리기 함수
+      function drawNormalDistribution(mu, sigma) {
+        // x값 범위 정의
+        var xMin = -3 * sigma + mu;
+        var xMax = 3 * sigma + mu;
 
-     	function animate() {
-        	ctx.clearRect(0, 0, canvas.width, canvas.height);
-        	for (var i = 0; i < data.length; i++) {
-          	ctx.beginPath();
-          	ctx.fillStyle = "blue";
-          	ctx.fillRect(xPos, yPos, data[i], barHeight);
-          	ctx.closePath();
-          	yPos += barHeight + 10;
-       		}
+        // y값 범위 정의
+        var yMin = 0;
+        var yMax = 1 / (sigma * Math.sqrt(2 * Math.PI));
 
-        	// 막대가 채워지는 애니메이션
-        	if (xPos < 350) {
-          	xPos += animationSpeed;
-          	requestAnimationFrame(animate);
-        	}
-      	}
+        // 그래프 그리기
+        var xRange = xMax - xMin;
+        var xStep = xRange / canvas.width;
+        var yStep = canvas.height / (yMax - yMin);
 
-      	// 애니메이션 시작
-      	animate();
-    	</script>
-	<h1>시험성적분석</h1>
+        ctx.beginPath();
+        ctx.strokeStyle = "blue";
+        ctx.moveTo(0, canvas.height);
+
+        for (var x = 0; x < canvas.width; x++) {
+          var xValue = xMin + x * xStep;
+          var yValue =
+            (1 / (sigma * Math.sqrt(2 * Math.PI))) *
+            Math.exp(-Math.pow(xValue - mu, 2) / (2 * Math.pow(sigma, 2)));
+          var y = canvas.height - (yValue - yMin) * yStep;
+          ctx.lineTo(x, y);
+        }
+
+        ctx.stroke();
+        ctx.closePath();
+      }
+
+      // 정규 분포 그래프 그리기
+      drawNormalDistribution(0, 1);
+
+
 </body>
 </html>
