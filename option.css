@@ -9,8 +9,12 @@
     font-style: normal;
 }
 
-h1 {
-	text-align: center;
-	font-size: x-large;
-	font-family:'KBO-Dia-Gothic_bold', sans-serif;
+h1{
+  text-align: center;
+  font-size: xxx-large;
+  font-family:'KBO-Dia-Gothic_bold', sans-serif;
+}
+body{
+  font-size: x-large;
+  font-family:'KBO-Dia-Gothic_bold', sans-serif;
 }
