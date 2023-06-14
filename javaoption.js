@@ -1,15 +1,25 @@
+function list_maker(){
+  const selectedFile = document.getElementById('myFile').files[0];
+  console.log(selectedFile)
+}
 
-function handleFileSelect(event){
-    const file = event.target.files[0]; // 선택된 파일
+function handleFileUpload(event) {
+  var fileInput = event.target;
+  var uploadButton = document.getElementById("myFile");
+  // 파일이 업로드된 후에 input 요소를 숨깁니다.
+  fileInput.style.display = "none";
+}
 
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-        const contents = e.target.result; // 파일의 내용
-
-        // 파일 내용을 처리하고 표로 출력하는 함수 호출
-        displayMax-min(contents);
-    };
-
-    reader.readAsText(file);
-} 
+function MakeGraph(){
+  const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+}
