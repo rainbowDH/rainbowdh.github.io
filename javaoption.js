@@ -13,7 +13,3 @@ function handleFileSelect(event){
 
     reader.readAsText(file);
 } 
-var context = document
-                .getElementById('myChart')
-                .getContext('2d');
-            var myChart = new Chart(context, {}
