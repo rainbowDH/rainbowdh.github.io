@@ -7,21 +7,31 @@
 	<title>시험성적분석</title>
 	<link rel="stylesheet" type="text/css" href="./option.css">
 	<script src="javaoption.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
   <h1>시험 성적</h1>
   <center>시험성적을 입력해서 분석과정을 실행합니다</center>
   <center>
     <form action="/upload-csv" method="POST" enctype="multipart/form-data">
-    <input type="file" id="myFile" accept=".csv" onchange="handleFileSelect(event)">
+    <input type="file"
+           id="myFile" 
+           accept=".csv" 
+           onchange="handleFileUpload(event); MakeGraph();          
+           list_maker();">
     </form>
   </center>
   <script>
+    const fileSelector = document.getElementById('file-selector');
+    fileSelector.addEventListener('change', (event) => {
+    const fileList = event.target.files;
+    console.log(fileList);
+    });
   </script>
   <center>
-    <div style="width: 900px; height: 900px;">
-    <canvas id="myChart"></canvas>
-  </div>
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>
   </center>
 </body>
 </html>
